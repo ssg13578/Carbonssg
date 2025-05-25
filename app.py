@@ -31,4 +31,15 @@ def home():
 
 @app.route('/status')
 def status():
-    return "서버 정상 동작 중입니다"
+        return jsonify([
+        {
+            "cluster": "agent-1",
+            "carbon": 19.27,
+            "timestamp": "2025-05-25 14:10:01"
+        },
+        {
+            "cluster": "agent-2",
+            "carbon": 21.35,
+            "timestamp": "2025-05-25 14:10:01"
+        }
+    ])

@@ -1,0 +1,26 @@
+졸작
+
+Render 이해해보기
+
+    ==> Deploying... # Render가 GitHub 푸시감지하고 새로배포시작
+     ==> Your service is live 🎉
+     ==> Deploying...
+==> Running 'gunicorn app:app' # Gunicorn이 Flask 앱을 실행해서 내부 포트1000에서 수신 대기중 이라는 뜻
+"83이랑 84는 각각 마스터 프로세스ID랑 워커 프로세스 ID"
+
+[2025-05-25 09:37:52 +0000] [83] [INFO] Starting gunicorn 23.0.0
+[2025-05-25 09:37:52 +0000] [83] [INFO] Listening at: http://0.0.0.0:10000 (83)
+[2025-05-25 09:37:52 +0000] [83] [INFO] Using worker: sync
+[2025-05-25 09:37:52 +0000] [84] [INFO] Booting worker with pid: 84
+127.0.0.1 - - [25/May/2025:09:37:53 +0000] "HEAD / HTTP/1.1" 200 0 "-" "Go-http-client/1.1" # 헬스체크
+     ==> Your service is live 🎉
+127.0.0.1 - - [25/May/2025:09:38:03 +0000] "GET / HTTP/1.1" 200 26 "-" "Go-http-client/2.0" # 헬스체크
+     ==> Detected service running on port 10000 # Render가 Flask앱이 내부적으로 포트 10000에서 동작 중인걸 감지
+     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+[2025-05-25 10:19:07 +0000] [83] [INFO] Handling signal: term
+[2025-05-25 10:19:07 +0000] [84] [INFO] Worker exiting (pid:84) 
+[2025-05-25 10:19:07 +0000] [83] [INFO] Shutting down: Master # 사용자가 일정 시간 동안 요청안해서 자동슬립
+
+signal: term 종료 시그널 = SIGTERM 감지
+
+총 실행 > 응답 > 슬립의 과정임
