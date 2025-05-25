@@ -24,6 +24,10 @@ def receive_data():
 
     return jsonify({"status": "success"}), 200
 
+@app.route('/')
+def home():
+    return 'Carbon 서버 작동중임'
+
 
 @app.route('/status')
 def status():
